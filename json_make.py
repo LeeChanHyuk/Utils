@@ -8,6 +8,8 @@ import cv2
 Contact : dlcskgur3434@gmail.com
 blog : https://leechanhyuk.github.io/"""
 
+## Please put in this file in the project folder
+
 # Define the dictionarys for making json files.
 file_data = OrderedDict()
 file_data["info"] = {'description':'Helen Dataset annotations', 'url':'http://www.ifp.illinois.edu/~vuongle2/helen/', 'Contributor':'ChanHyukLee','Data_created':'2021/06/09'}
@@ -27,6 +29,7 @@ for txt in os.listdir(annotation_path):
     f = open(os.path.join(annotation_path,txt))
     # Helen dataset's extension is jpg
     image_name_without_jpg = f.readline().strip('\n')
+    image_name_without_jpg = image_name_without_jpg.replace("_","")
     image_name = image_name_without_jpg + '.jpg'
     img = cv2.imread(train_image_path+image_name)
     image_informations.append({'file_name':image_name, 'height':str(img.shape[0]), 'width':str(img.shape[1]), 'id':image_name_without_jpg})
